@@ -1,8 +1,9 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
-
 import { AppRoutingModule } from './app-routing.module';
+import { HttpClientModule } from '@angular/common/http'
+
 import { AppComponent } from './app.component';
 import { ComponentTesteComponent } from './componets/component-teste/component-teste.component';
 import { DirectivesComponent } from './components/directives/directives.component';
@@ -12,6 +13,7 @@ import { EmitterComponent } from './components/emitter/emitter.component';
 import { ChangeNumberComponent } from './components/change-number/change-number.component';
 import { ListRenderComponent } from './components/list-render/list-render.component';
 import { TwoWayBidingComponent } from './components/two-way-biding/two-way-biding.component';
+import { ItemDetailComponent } from './components/item-detail/item-detail.component';
 
 @NgModule({
   declarations: [
@@ -23,13 +25,15 @@ import { TwoWayBidingComponent } from './components/two-way-biding/two-way-bidin
     EmitterComponent,
     ChangeNumberComponent,
     ListRenderComponent,
-    TwoWayBidingComponent
+    TwoWayBidingComponent,
+    ItemDetailComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
