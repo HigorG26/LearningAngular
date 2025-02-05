@@ -1,14 +1,67 @@
-<div id="main" class="w-2/4 m-auto h-screen bg-green-200" >
+<div id="main" class="min-h-screen bg-gradient-to-b from-green-100 to-green-200">
+  <!-- Container principal com largura responsiva -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full md:w-3/4 lg:w-2/3">
+    
+    <header class="py-6" *ngIf="router.url !== '/'">
+      <h1 class="text-3xl font-bold text-center text-gray-800 hover:text-gray-600 transition-colors">
+        Projeto Angular
+      </h1>
+    </header>
 
-  <header class="text-center font-semibold underline text-xl ">Projeto Angular</header>
-  <nav class="flex gap-2 text-center my-3 justify-center h-10">
-    <a routerLink="/" class="bg-orange-300 rounded-full w-12 h-fit hover:border border-black my-auto">Home</a><br/>
-    <a routerLink="/list" class="bg-orange-300 rounded-full w-12 h-fit hover:border border-black my-auto">Lista</a>
-  
-  </nav>
-  
-  <router-outlet />
-  <footer>footer</footer>
+    <nav class="py-2 mb-1">
+      <!-- Botão do menu hambúrguer -->
+      <button (click)="toggleMenu()" class="sm:hidden w-full flex items-center justify-center mb-1">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-orange-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+
+      <!-- Menu de navegação -->
+      <div [ngClass]="{'hidden sm:flex': !menuAberto, 'flex': menuAberto}"
+           class="relative flex-wrap justify-center items-center gap-4 p-2">
+        <!-- Botão anterior -->
+        <button (click)="previousSlide()" 
+                class="absolute left-0 z-10 p-2 text-orange-400 hover:text-orange-500">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+        </button>
+
+        <!-- Container do carrossel -->
+        <div class="flex overflow-hidden w-96 justify-center">
+          <div class="flex transition-transform duration-300 ease-in-out" [style.transform]="'translateX(' + (-currentSlide * 100) + '%)'">
+            <a *ngFor="let link of navigationLinks; let i = index"
+               [routerLink]="link.path" 
+               class="w-full sm:w-auto mx-2 text-center px-6 py-2 bg-orange-400 text-white rounded-full hover:bg-orange-500 transition-colors duration-300 shadow-md hover:shadow-lg flex-shrink-0">
+              {{link.label}}
+            </a>
+          </div>
+        </div>
+
+        <!-- Botão próximo -->
+        <button (click)="nextSlide()" 
+                class="absolute right-0 z-10 p-2 text-gray-600 hover:text-black">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+          </svg>
+        </button>
+      </div>
+
+      <!-- Overlay -->
+      <div *ngIf="menuAberto" 
+           (click)="toggleMenu()"
+           class="fixed inset-0 bg-black bg-opacity-50 z-40 sm:hidden">
+      </div>
+    </nav>
+
+    <main class="min-h-[calc(100vh-250px)]">
+      <router-outlet />
+    </main>
+
+    <footer class="py-4 mt-8 text-center text-gray-600 border-t border-gray-200">
+      <p>&copy; 2024 Projeto Angular - Todos os direitos reservados</p>
+    </footer>
+  </div>
 </div>
 
 <!-- 

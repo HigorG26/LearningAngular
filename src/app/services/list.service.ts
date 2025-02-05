@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { Animal } from '../Animal';
+import { Animal } from '../interface/Animal';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
