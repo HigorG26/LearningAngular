@@ -3,3 +3,7 @@ export interface Animal {
     type: string;
     age: number;
 }
+
+export interface User {
+    name: string;
+}

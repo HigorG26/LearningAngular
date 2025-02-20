@@ -1,60 +1,67 @@
-<main class="container mx-auto">
-  <!-- Seção Hero -->
-  <div class="flex flex-col items-center justify-center min-h-[calc(100vh-300px)]">
-    <div class="text-center animate-fadeInUp">
-      <h1 class="text-5xl font-bold text-orange-500 mb-4">Bem Vindo!</h1>
-      <p class="text-xl text-gray-600">Ao meu projeto Angular</p>
-    </div>
-  </div>
-
-  <!-- Seção de Características -->
-  <section class="py-16 bg-gray-50 rounded-2xl">
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 px-4 rounded-2xl">
-      <div class="bg-white p-8 rounded-lg shadow-md hover:shadow-lg transition-shadow">
-        <div class="text-orange-400 text-4xl mb-4">
-          <i class="fas fa-cogs"></i>
-        </div>
-        <h3 class="text-xl font-bold mb-4 text-gray-800">Funcionalidade</h3>
-        <p class="text-gray-600">Explore recursos poderosos e flexíveis para seu desenvolvimento.</p>
-      </div>
-
-      <div class="bg-white p-8 rounded-lg shadow-md hover:shadow-lg transition-shadow">
-        <div class="text-orange-400 text-4xl mb-4">
-          <i class="fas fa-chart-line"></i>
-        </div>
-        <h3 class="text-xl font-bold mb-4 text-gray-800">Desempenho</h3>
-        <p class="text-gray-600">Performance otimizada para uma experiência excepcional.</p>
-      </div>
-
-      <div class="bg-white p-8 rounded-lg shadow-md hover:shadow-lg transition-shadow">
-        <div class="text-orange-400 text-4xl mb-4">
-          <i class="fas fa-shield-alt"></i>
-        </div>
-        <h3 class="text-xl font-bold mb-4 text-gray-800">Segurança</h3>
-        <p class="text-gray-600">Proteção e confiabilidade em todas as operações.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Seção Sobre -->
-  <section class="py-16">
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center px-4">
-      <div>
-        <h2 class="text-3xl font-bold mb-6 text-gray-800">Sobre o Projeto</h2>
-        <p class="text-gray-600 mb-4 text-lg">
-          Este projeto demonstra as capacidades do Angular combinadas com Tailwind CSS, 
-          criando interfaces modernas e responsivas.
+<div class="min-h-screen min-w-screen bg-gray-900 text-gray-100 font-mono">
+  <!-- Main container -->
+  <div class="max-w-3xl mx-auto px-4 py-8 min-h-screen flex flex-col">
+    
+    <!-- Welcome section (agora sempre visível) -->
+    <div class="flex-auto flex flex-col items-center justify-center space-y-8 min-h-[300px] flex-shrink-0">
+      <div class="flex flex-col items-center justify-center space-y-2">
+        <h1 class="text-4xl font-bold text-orange-400">CRAG.AI</h1>
+        <p class="text-lg text-gray-400 text-center">
+          Your personal programming assistant
         </p>
-        <p class="text-gray-600">
-          Explore os diferentes componentes e funcionalidades através do menu de navegação 
-          para ver exemplos práticos de implementação.
-        </p>
+      </div>
+
+      <div class="chat-container flex flex-col max-h-[500px]  w-full border border-gray-700 rounded-2xl overflow-hidden">
+        <!-- Área de Mensagens -->
+        <div class="chat-messages flex-1 overflow-y-auto scrollbar-thin scrollbar-thumb-gray-700 scrollbar-track-gray-900 p-4">
+          <div class="w-full flex flex-col items-end space-y-1" *ngFor="let message of messages">
+            <div class="flex flex-col items-end space-y-1">
+              <span class="text-sm text-gray-400">{{ username }}</span>
+              <p class="bg-blue-500 text-white p-3 rounded-l-lg w-fit max-w-xs">
+                {{ message.text }}
+              </p>
+            </div>
+          </div>
+        </div>
+      
+        <!-- Input de Mensagem -->
+        <div class="chat-input flex w-full gap-2 px-4 py-2 bg-gray-900 border-t border-gray-700">
+          <input 
+            placeholder="Make a question..."
+            class="flex-1 bg-gray-800 border border-gray-700 rounded-l-lg py-3 pl-4 pr-4 text-gray-100 focus:outline-none focus:border-orange-400 transition-colors"
+            type="text" 
+            [(ngModel)]="inputValue"
+          >
+          <button
+            (click)="sendMessage()"
+            class="bg-orange-400 hover:bg-orange-500 text-white px-6 py-2 rounded-r-lg transition-colors whitespace-nowrap"
+          >
+            Send
+          </button>
+        </div>
       </div>
       
-      <!-- <div class="rounded-lg overflow-hidden shadow-lg">
-        <img src="assets/images/angular-project.jpg" alt="Angular Project" 
-             class="w-full h-auto object-cover">
-      </div> -->
+
+      
+
+      <!-- Example questions -->
+      <div class="w-full max-w-2xl">
+        <p class="text-sm text-gray-500 mb-3 text-center">Example questions</p>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+          <button 
+            *ngFor="let example of examples"
+            (click)="setInputValue(example)"
+            class="text-left p-3 bg-gray-800 hover:bg-gray-750 rounded-lg text-sm text-gray-300 border border-gray-700 hover:border-orange-400 transition-all duration-200"
+          >
+            {{ example }}
+          </button>
+        </div>
+      </div>
     </div>
-  </section>
-</main>
+
+    <!-- Footer with credits -->
+    <div class="text-center text-gray-500 text-sm mt-8">
+      Developed with Angular and Tailwind CSS
+    </div>
+  </div>
+</div>
