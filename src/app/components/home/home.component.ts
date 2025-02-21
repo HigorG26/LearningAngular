@@ -34,6 +34,10 @@ export class HomeComponent {
       this.currentMessage = '';
     }
   }
+
+  clearMessages() {
+    this.messages = [];
+  }
   
   private allExamples = [
     "Explain the concept of object-oriented programming",

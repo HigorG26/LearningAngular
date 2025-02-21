@@ -1,18 +1,16 @@
-<div class="min-h-screen min-w-screen bg-gray-900 text-gray-100 font-mono">
-  <!-- Main container -->
+<div class="min-h-screen min-w-screen bg-gradient-to-br from-gray-700 to-gray-900 text-gray-100 font-mono">
   <div class="max-w-3xl mx-auto px-4 py-8 min-h-screen flex flex-col">
-    
-    <!-- Welcome section (agora sempre visível) -->
-    <div class="flex-auto flex flex-col items-center justify-center space-y-8 min-h-[300px] flex-shrink-0">
+    <div class="flex-auto flex flex-col items-center justify-center space-y-8 min-h-[300px] flex-shrink-0 animate-fadeIn">
       <div class="flex flex-col items-center justify-center space-y-2">
-        <h1 class="text-4xl font-bold text-orange-400">CRAG.AI</h1>
+        <div class="flex items-center gap-2">
+          <img src="assets/Designer.jpeg" alt="Logo" class="w-16 h-16 my-auto mb-4 rounded-full animate-slideInRight">
+          <h1 class="text-4xl font-bold text-orange-400 animate-slideInLeft my-auto">CRAG.AI</h1>
+        </div>
         <p class="text-lg text-gray-400 text-center">
           Your personal programming assistant
         </p>
       </div>
-
       <div class="chat-container flex flex-col max-h-[500px]  w-full border border-gray-700 rounded-2xl overflow-hidden">
-        <!-- Área de Mensagens -->
         <div class="chat-messages flex-1 overflow-y-auto scrollbar-thin scrollbar-thumb-gray-700 scrollbar-track-gray-900 p-4">
           <div class="w-full flex flex-col items-end space-y-1" *ngFor="let message of messages">
             <div class="flex flex-col items-end space-y-1">
@@ -23,29 +21,25 @@
             </div>
           </div>
         </div>
-      
-        <!-- Input de Mensagem -->
         <div class="chat-input flex w-full gap-2 px-4 py-2 bg-gray-900 border-t border-gray-700">
+          <button *ngIf="messages.length > 0" (click)="clearMessages()" class="text-gray-500 hover:text-red-500 transition-colors">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+            </svg>
+          </button>
           <input 
-            placeholder="Make a question..."
+            placeholder="Hey {{ username }}, make a question..."
             class="flex-1 bg-gray-800 border border-gray-700 rounded-l-lg py-3 pl-4 pr-4 text-gray-100 focus:outline-none focus:border-orange-400 transition-colors"
             type="text" 
             [(ngModel)]="inputValue"
+            (keyup.enter)="sendMessage()"
           >
-          <button
-            (click)="sendMessage()"
-            class="bg-orange-400 hover:bg-orange-500 text-white px-6 py-2 rounded-r-lg transition-colors whitespace-nowrap"
-          >
+          <button (click)="sendMessage()" class="bg-orange-400 hover:bg-orange-500 text-white px-6 py-2 rounded-r-lg transition-colors whitespace-nowrap">
             Send
           </button>
         </div>
       </div>
-      
-
-      
-
-      <!-- Example questions -->
-      <div class="w-full max-w-2xl">
+      <div *ngIf="messages.length < 1" class="w-full max-w-2xl">
         <p class="text-sm text-gray-500 mb-3 text-center">Example questions</p>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
           <button 
@@ -58,10 +52,13 @@
         </div>
       </div>
     </div>
-
-    <!-- Footer with credits -->
     <div class="text-center text-gray-500 text-sm mt-8">
       Developed with Angular and Tailwind CSS
     </div>
-  </div>
+    <a routerLink="/about" class="inline-flex items-center justify-center text-gray-400 hover:text-orange-400 transition-colors py-2 px-4 rounded-lg border border-gray-300 hover:border-orange-400 focus:outline-none focus:ring-2 focus:ring-orange-400 focus:ring-opacity-50 mt-4">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M12 21a9 9 0 100-18 9 9 0 000 18z" />
+      </svg>
+      About
+    </a>
 </div>

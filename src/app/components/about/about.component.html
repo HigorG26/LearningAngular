@@ -1,0 +1,74 @@
+<div class="flex flex-col h-full max-w-3xl mx-auto p-5">
+  <a routerLink="/home" class="self-start mb-4 flex items-center text-gray-600 hover:text-orange-400 transition-colors">
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+    </svg>
+    Voltar
+  </a>
+  <h1 class="text-3xl font-bold text-center mb-8">About us</h1>
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div class="bg-white rounded-lg shadow-md p-6">
+      <div class="flex items-center space-x-4">
+        <img src="assets/Higor.png" alt="Desenvolvedor 1" 
+             class="w-24 h-24 rounded-full object-cover cursor-pointer hover:scale-105 transition-transform duration-300"
+             (click)="openImagePopup('assets/Higor.png')">
+        <div>
+          <h2 class="text-xl font-semibold text-black">Higor Gabriel</h2>
+          <p class="text-gray-600">Developer</p>
+        </div>
+      </div>
+      <p class="mt-4 text-gray-700">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur vehicula, urna at fermentum tincidunt, odio turpis dictum odio, in vulputate nisi ligula sit amet arcu. Integer interdum ante at felis tincidunt, nec interdum lorem feugiat. Nunc feugiat metus vitae arcu tincidunt, at cursus justo varius. Proin cursus tempor sollicitudin. Cras non quam ac orci pharetra lacinia non sed elit. Fusce sit amet auctor felis. Vivamus efficitur urna vel urna scelerisque, sit amet tincidunt lorem facilisis.
+      </p>
+      <div class="mt-4 flex space-x-3">
+        <a href="https://www.linkedin.com/in/higorgabrielfs/" target="_blank" rel="noopener noreferrer" 
+           class="text-blue-600 hover:text-blue-800">
+          <img src="assets/linkedin.png" alt="LinkedIn" class="w-6 h-6 hover:scale-105 transition-transform duration-300">
+        </a>
+        <a href="https://github.com/HigorG26" target="_blank" rel="noopener noreferrer" 
+           class="text-gray-800 hover:text-gray-600">
+          <img src="assets/git.png" alt="GitHub" class="w-6 h-6 hover:scale-105 transition-transform duration-300">
+        </a>
+        <a href="https://www.instagram.com/higor.gfs/" target="_blank" rel="noopener noreferrer" 
+           class="text-gray-800 hover:text-gray-600">
+          <img src="assets/Instagram.png" alt="GitHub" class="w-6 h-6 hover:scale-105 transition-transform duration-300">
+        </a>
+      </div>
+    </div>
+    <div class="bg-white rounded-lg shadow-md p-6">
+      <div class="flex items-center space-x-4">
+        <img src="assets/gustavo.png" alt="Desenvolvedor 2" 
+             class="w-24 h-24 rounded-full object-cover cursor-pointer hover:scale-105 transition-transform duration-300"
+             (click)="openImagePopup('assets/gustavo.png')">
+        <div>
+          <h2 class="text-xl font-semibold text-black">Gustavo Ortega</h2>
+          <p class="text-gray-600">Developer</p>
+        </div>
+      </div>
+      <p class="mt-4 text-gray-700">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur vehicula, urna at fermentum tincidunt, odio turpis dictum odio, in vulputate nisi ligula sit amet arcu. Integer interdum ante at felis tincidunt, nec interdum lorem feugiat. Nunc feugiat metus vitae arcu tincidunt, at cursus justo varius. Proin cursus tempor sollicitudin. Cras non quam ac orci pharetra lacinia non sed elit. Fusce sit amet auctor felis. Vivamus efficitur urna vel urna scelerisque, sit amet tincidunt lorem facilisis.
+      </p>
+      <div class="mt-4 flex space-x-3">
+        <a href="https://www.linkedin.com/in/gustavomendoncaortega/" target="_blank" rel="noopener noreferrer" 
+           class="text-blue-600 hover:text-blue-800">
+          <img src="assets/linkedin.png" alt="LinkedIn" class="w-6 h-6 hover:scale-105 transition-transform duration-300">
+        </a>
+        <a href="https://github.com/CuriousGu" target="_blank" rel="noopener noreferrer" 
+           class="text-gray-800 hover:text-gray-600">
+          <img src="assets/git.png" alt="GitHub" class="w-6 h-6 hover:scale-105 transition-transform duration-300">
+        </a>
+      </div>
+    </div>
+  </div>
+</div>  
+<div *ngIf="selectedImage" class="fixed inset-0 bg-black bg-opacity-75 backdrop-blur-sm flex items-center justify-center z-50" (click)="closeImagePopup()">
+  <div class="relative">
+    <img [src]="selectedImage" class="max-h-[80vh] max-w-[90vw] object-contain rounded-lg">
+    <button class="absolute top-4 right-4 text-white bg-black bg-opacity-50 rounded-full p-2 hover:bg-opacity-75"
+            (click)="closeImagePopup()">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+      </svg>
+    </button>
+  </div>
+</div>  

@@ -1,44 +1,35 @@
-<div class="login-container">
-  <h2>Login</h2>
-  <form (ngSubmit)="onSubmit()">
-    <input type="text" [(ngModel)]="username" name="username" placeholder="Digite seu nome" required>
-    <button type="submit">Entrar</button>
-  </form>
-</div>
+<div class="font-mono min-h-screen bg-gradient-to-br from-gray-900 to-gray-700 flex items-center justify-center p-4">
+  <div class="bg-white rounded-2xl shadow-xl w-full max-w-md p-8 opacity-0 animate-fade-in">
+    <div class="text-center mb-8">
+      <img src="assets/Designer.jpeg" alt="Logo" class="w-16 h-16 mx-auto mb-4 rounded-full animate-">
+      <h2 class="text-3xl font-bold text-gray-800">Wellcome</h2>
+      <p class="text-gray-600 mt-2 text-sm">You must inform your name or nickname to continue.</p>
+    </div>
 
-
-<!-- 
-<div class="popup-overlay" *ngIf="showPopup">
-  <div class="popup-content">
-    <h2>Bem-vindo!</h2>
-    <p>Por favor, digite seu nome para continuar:</p>
-    <input type="text" [(ngModel)]="user.name" placeholder="Seu nome">
-    <button (click)="submitName()">Continuar</button>
-  </div>
-</div>
-
-<div *ngIf="!showPopup">
-  <div class="min-h-screen bg-gray-100 flex items-center justify-center p-4">
-    <div class="bg-white rounded-xl shadow-lg w-full max-w-md p-8 text-center">
-      <h2 class="text-2xl font-semibold text-gray-800 mb-6">Bem-vindo!</h2>
-      
-      <div class="space-y-4">
-        <p class="text-gray-600">Por favor, digite seu nome para continuar:</p>
-        
+    <form (ngSubmit)="onSubmit()" class="space-y-6">
+      <div class="space-y-2">
+        <label for="username" class="text-sm text-gray-700">User name</label>
         <input 
           type="text" 
-          [(ngModel)]="user.name" 
-          placeholder="Seu nome" 
-          class="w-full p-3 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          id="username"
+          [(ngModel)]="username" 
+          name="username" 
+          placeholder="Type your name or nickname"
+          class="text-black font-mono w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+          required
+          autocomplete="off"
+          autocorrect="off"
+          spellcheck="false"
         >
-        
-        <button 
-          (click)="submitName()" 
-          class="w-full py-3 px-4 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
-        >
-          Continuar
-        </button>
       </div>
-    </div>
+
+      <button 
+        type="submit"
+        class="w-full py-3 px-4 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition-colors duration-200 transform hover:scale-[1.02]"
+      >
+        Entrar
+      </button>
+    </form>
   </div>
-</div> -->
+</div>
+
