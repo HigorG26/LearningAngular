@@ -60,62 +60,60 @@ export class HomeComponent implements OnInit {
   }
 
   private updatePlaceholders(): void {
-    this.placeholders = [
-      `Hello ${this.username}, how can I help?`,
-      `What's your question today, ${this.username}?`,
-      `${this.username}, what would you like to know?`,
-      `Ask your question, ${this.username}!`,
-      `${this.username}, I'm here to help!`,
-      `What do you want to learn today, ${this.username}?`,
-      `Let's code, ${this.username}?`,
-      `${this.username}, what's your coding challenge?`,
-      `Hello ${this.username}, how can I help?`,
-      `What's your question today, ${this.username}?`,
-      `${this.username}, what would you like to know?`,
-      `Ask your question, ${this.username}!`,
-      `${this.username}, I'm here to help!`,
-      `What do you want to learn today, ${this.username}?`,
-      `Let's code, ${this.username}?`,
-      `${this.username}, what's your coding challenge?`,
-      `Hello ${this.username}, what do you need today?`,
-      `How can I help you, ${this.username}?`,
-      `What's your next challenge, ${this.username}?`,
-      `What are you trying to do, ${this.username}?`,
-      `What's your question now, ${this.username}?`,
-      `What can we solve today, ${this.username}?`,
-      `Need help with code, ${this.username}?`,
-      `How can I make your work easier, ${this.username}?`,
-      `What are your technical questions, ${this.username}?`,
-      `What's up, ${this.username}?`,
-      `Which part of the code are you working on, ${this.username}?`,
-      `What functionality are you trying to implement, ${this.username}?`,
-      `What's your goal today, ${this.username}?`,
-      `Is there something specific you want to learn, ${this.username}?`,
-      `How can we improve your code, ${this.username}?`,
-      `What's the next step in your project, ${this.username}?`,
-      `Let's solve this together, ${this.username}?`,
-      `Need any programming tips, ${this.username}?`,
-      `Want to discuss a solution for your code, ${this.username}?`,
-      `Which part of your process are you having difficulties with, ${this.username}?`,
-      `What are you trying to optimize, ${this.username}?`,
-      `What problem do you want to solve, ${this.username}?`
-    ];
+    if (this.messages.length === 0) {
+      this.placeholders = [
+        `Hello ${this.username}, how can I help?`,
+        `What's your question today, ${this.username}?`,
+        `${this.username}, what would you like to know?`,
+        `Ask your question, ${this.username}!`,
+        `${this.username}, I'm here to help!`,
+        `What do you want to learn today, ${this.username}?`,
+        `Let's code, ${this.username}?`,
+        `${this.username}, what's your coding challenge?`,
+        `Hello ${this.username}, what do you need today?`,
+        `How can I help you, ${this.username}?`,
+        `What's your next challenge, ${this.username}?`,
+        `What are you trying to do, ${this.username}?`,
+        `What's your question now, ${this.username}?`,
+        `What can we solve today, ${this.username}?`,
+        `Need help with code, ${this.username}?`,
+        `How can I make your work easier, ${this.username}?`,
+        `What are your technical questions, ${this.username}?`,
+        `What's up, ${this.username}?`,
+        `Which part of the code are you working on, ${this.username}?`,
+        `What functionality are you trying to implement, ${this.username}?`,
+        `What's your goal today, ${this.username}?`,
+        `Is there something specific you want to learn, ${this.username}?`,
+        `How can we improve your code, ${this.username}?`,
+        `What's the next step in your project, ${this.username}?`,
+        `Let's solve this together, ${this.username}?`,
+        `Need any programming tips, ${this.username}?`,
+        `Want to discuss a solution for your code, ${this.username}?`,
+        `Which part of your process are you having difficulties with, ${this.username}?`,
+        `What are you trying to optimize, ${this.username}?`,
+        `What problem do you want to solve, ${this.username}?`
+      ];
+    } else {
+      this.placeholders = ['Type your message...'];
+    }
   }
 
   sendMessage() {
     const messageToSend = this.inputValue || this.currentMessage;
-    if (messageToSend.trim()) {
+    if (messageToSend.trim() && messageToSend.length > 0) {
       this.messages.push({
         text: messageToSend,
         timestamp: new Date()
       });
       this.inputValue = '';
       this.currentMessage = '';
+      this.updatePlaceholders();
     }
   }
 
   clearMessages() {
     this.messages = [];
+    this.updatePlaceholders();
   }
   
   private allExamples = [
@@ -190,8 +188,6 @@ export class HomeComponent implements OnInit {
     "How to improve website performance?",
     "What is SSR (Server-Side Rendering) and SSG (Static Site Generation)?"
 ];
-
-
 
   examples = this.getRandomExamples(4);
 
