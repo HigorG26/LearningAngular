@@ -10,17 +10,96 @@ interface Message {
   selector: 'app-home',
   templateUrl: './home.component.html'
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit {
 
   username: string = '';
   currentMessage: string = '';
   inputValue: string = '';
   messages: Message[] = [];
 
+  placeholders = [
+    `Hello ${this.username}, how can I help?`,
+    `What's your question today, ${this.username}?`,
+    `${this.username}, what would you like to know?`,
+    `Ask your question, ${this.username}!`,
+    `${this.username}, I'm here to help!`,
+    `What do you want to learn today, ${this.username}?`,
+    `Let's code, ${this.username}?`,
+    `${this.username}, what's your coding challenge?`,
+    `Hello ${this.username}, what do you need today?`,
+    `How can I help you, ${this.username}?`,
+    `What's your next challenge, ${this.username}?`,
+    `What are you trying to do, ${this.username}?`,
+    `What's your question now, ${this.username}?`,
+    `What can we solve today, ${this.username}?`,
+    `Need help with code, ${this.username}?`,
+    `How can I make your work easier, ${this.username}?`,
+    `What are your technical questions, ${this.username}?`,
+    `What's up, ${this.username}?`,
+    `Which part of the code are you working on, ${this.username}?`,
+    `What functionality are you trying to implement, ${this.username}?`,
+    `What's your goal today, ${this.username}?`,
+    `Is there something specific you want to learn, ${this.username}?`,
+    `How can we improve your code, ${this.username}?`,
+    `What's the next step in your project, ${this.username}?`,
+    `Let's solve this together, ${this.username}?`,
+    `Need any programming tips, ${this.username}?`,
+    `Want to discuss a solution for your code, ${this.username}?`,
+    `Which part of your process are you having difficulties with, ${this.username}?`,
+    `What are you trying to optimize, ${this.username}?`,
+    `What problem do you want to solve, ${this.username}?`
+  ];
+
   constructor(private userService: UserService) {}
 
   ngOnInit() {
-    this.userService.currentUser.subscribe(name => this.username = name);
+    this.userService.currentUser.subscribe(name => {
+      this.username = name || 'Visitante';
+      this.updatePlaceholders();
+    });
+  }
+
+  private updatePlaceholders(): void {
+    this.placeholders = [
+      `Hello ${this.username}, how can I help?`,
+      `What's your question today, ${this.username}?`,
+      `${this.username}, what would you like to know?`,
+      `Ask your question, ${this.username}!`,
+      `${this.username}, I'm here to help!`,
+      `What do you want to learn today, ${this.username}?`,
+      `Let's code, ${this.username}?`,
+      `${this.username}, what's your coding challenge?`,
+      `Hello ${this.username}, how can I help?`,
+      `What's your question today, ${this.username}?`,
+      `${this.username}, what would you like to know?`,
+      `Ask your question, ${this.username}!`,
+      `${this.username}, I'm here to help!`,
+      `What do you want to learn today, ${this.username}?`,
+      `Let's code, ${this.username}?`,
+      `${this.username}, what's your coding challenge?`,
+      `Hello ${this.username}, what do you need today?`,
+      `How can I help you, ${this.username}?`,
+      `What's your next challenge, ${this.username}?`,
+      `What are you trying to do, ${this.username}?`,
+      `What's your question now, ${this.username}?`,
+      `What can we solve today, ${this.username}?`,
+      `Need help with code, ${this.username}?`,
+      `How can I make your work easier, ${this.username}?`,
+      `What are your technical questions, ${this.username}?`,
+      `What's up, ${this.username}?`,
+      `Which part of the code are you working on, ${this.username}?`,
+      `What functionality are you trying to implement, ${this.username}?`,
+      `What's your goal today, ${this.username}?`,
+      `Is there something specific you want to learn, ${this.username}?`,
+      `How can we improve your code, ${this.username}?`,
+      `What's the next step in your project, ${this.username}?`,
+      `Let's solve this together, ${this.username}?`,
+      `Need any programming tips, ${this.username}?`,
+      `Want to discuss a solution for your code, ${this.username}?`,
+      `Which part of your process are you having difficulties with, ${this.username}?`,
+      `What are you trying to optimize, ${this.username}?`,
+      `What problem do you want to solve, ${this.username}?`
+    ];
   }
 
   sendMessage() {
@@ -124,5 +203,10 @@ export class HomeComponent {
     return [...this.allExamples]
       .sort(() => Math.random() - 0.5)
       .slice(0, count);
+  }
+
+  getRandomPlaceholder(): string {
+    const randomIndex = Math.floor(Math.random() * this.placeholders.length);
+    return this.placeholders[randomIndex];
   }
 }
