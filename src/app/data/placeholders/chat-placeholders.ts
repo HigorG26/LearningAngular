@@ -11,7 +11,7 @@ export const generatePlaceholders = (username: string) => [
   `What's your question now, ${username}?`,
   `Need any programming tips, ${username}?`,
   `What are you trying to do, ${username}?`,
-  `Let's solve this together, ${username}?`,
+  `Let's solve this together, ${username}!`,
   `What's your question today, ${username}?`,
   `What's your next challenge, ${username}?`,
   `${username}, what would you like to know?`,
@@ -29,6 +29,22 @@ export const generatePlaceholders = (username: string) => [
   `Is there something specific you want to learn, ${username}?`,
   `What functionality are you trying to implement, ${username}?`,
   `Which part of your process are you having difficulties with, ${username}?`,
+  `How's your project going, ${username}?`,
+  `Need debugging help, ${username}?`,
+  `Any blockers in your code, ${username}?`,
+  `Looking for a better approach, ${username}?`,
+  `Let's brainstorm some ideas, ${username}!`,
+  `What’s on your mind, ${username}?`,
+  `Need to refactor something, ${username}?`,
+  `Tell me what you're building, ${username}!`,
+  `Got a tricky bug, ${username}? Let's solve it!`,
+  `Need some inspiration, ${username}?`,
+  `Thinking about best practices, ${username}?`,
+  `What tech stack are you using, ${username}?`,
+  `Stuck on something, ${username}?`,
+  `Want to optimize performance, ${username}?`,
+  `Looking for documentation, ${username}?`,
+  `Need an extra pair of eyes on your code, ${username}?`,
 ];
 
-export const defaultPlaceholder = ['Type your message...']; 
+export const defaultPlaceholder = ['Type your message...'];
