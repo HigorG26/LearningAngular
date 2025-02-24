@@ -7,20 +7,21 @@
   </a>
   <h1 class="text-3xl font-bold text-center mb-8 animate-slideDown">About us</h1>
   <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-    <div class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-all duration-300 animate-slideInLeft">
+    <div class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-all duration-300 animate-slideInLeft" id="dev-card-higor">
       <div class="flex items-center space-x-4">
         <img src="assets/Higor.png" alt="Desenvolvedor 1" 
+             id="higor-image"
              class="w-24 h-24 rounded-full object-cover cursor-pointer hover:scale-105 transition-transform duration-300"
              (click)="openImagePopup('assets/Higor.png')">
         <div>
-          <h2 class="text-xl font-semibold text-black">Higor Gabriel</h2>
-          <p class="text-gray-600">Developer</p>
+          <h2 class="text-xl font-semibold text-black" id="higor-name">Higor Gabriel</h2>
+          <p class="text-gray-600" id="higor-role">Developer</p>
         </div>
       </div>
-      <p class="mt-4 text-gray-700">
+      <p class="mt-4 text-gray-700" id="higor-bio">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur vehicula, urna at fermentum tincidunt, odio turpis dictum odio, in vulputate nisi ligula sit amet arcu. Integer interdum ante at felis tincidunt, nec interdum lorem feugiat. Nunc feugiat metus vitae arcu tincidunt, at cursus justo varius. Proin cursus tempor sollicitudin. Cras non quam ac orci pharetra lacinia non sed elit. Fusce sit amet auctor felis. Vivamus efficitur urna vel urna scelerisque, sit amet tincidunt lorem facilisis.
       </p>
-      <div class="mt-4 flex space-x-3">
+      <div class="mt-4 flex space-x-3" id="higor-social-links">
         <a href="https://www.linkedin.com/in/higorgabrielfs/" target="_blank" rel="noopener noreferrer" 
            class="text-blue-600 hover:text-blue-800">
           <img src="assets/linkedin.png" alt="LinkedIn" class="w-6 h-6 hover:scale-105 transition-transform duration-300">
@@ -35,20 +36,21 @@
         </a>
       </div>
     </div>
-    <div class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-all duration-300 animate-slideInRight">
+    <div class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-all duration-300 animate-slideInRight" id="dev-card-gustavo">
       <div class="flex items-center space-x-4">
         <img src="assets/gustavo.png" alt="Desenvolvedor 2" 
+             id="gustavo-image"
              class="w-24 h-24 rounded-full object-cover cursor-pointer hover:scale-105 transition-transform duration-300"
              (click)="openImagePopup('assets/gustavo.png')">
         <div>
-          <h2 class="text-xl font-semibold text-black">Gustavo Ortega</h2>
-          <p class="text-gray-600">Developer</p>
+          <h2 class="text-xl font-semibold text-black" id="gustavo-name">Gustavo Ortega</h2>
+          <p class="text-gray-600" id="gustavo-role">Developer</p>
         </div>
       </div>
-      <p class="mt-4 text-gray-700">
+      <p class="mt-4 text-gray-700" id="gustavo-bio">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur vehicula, urna at fermentum tincidunt, odio turpis dictum odio, in vulputate nisi ligula sit amet arcu. Integer interdum ante at felis tincidunt, nec interdum lorem feugiat. Nunc feugiat metus vitae arcu tincidunt, at cursus justo varius. Proin cursus tempor sollicitudin. Cras non quam ac orci pharetra lacinia non sed elit. Fusce sit amet auctor felis. Vivamus efficitur urna vel urna scelerisque, sit amet tincidunt lorem facilisis.
       </p>
-      <div class="mt-4 flex space-x-3">
+      <div class="mt-4 flex space-x-3" id="gustavo-social-links">
         <a href="https://www.linkedin.com/in/gustavomendoncaortega/" target="_blank" rel="noopener noreferrer" 
            class="text-blue-600 hover:text-blue-800">
           <img src="assets/linkedin.png" alt="LinkedIn" class="w-6 h-6 hover:scale-105 transition-transform duration-300">
