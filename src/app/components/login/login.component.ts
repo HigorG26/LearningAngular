@@ -9,6 +9,7 @@ import { UserService } from '../../services/user.service';
 })
 export class LoginComponent implements OnInit {
   username: string = '';
+  isInputInvalid: boolean = false;
 
   constructor(
     private router: Router,
@@ -16,23 +17,31 @@ export class LoginComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    const nome = sessionStorage.getItem('nome');
-    if (nome) {
+    const username = sessionStorage.getItem('username');
+    if (username) {
       this.router.navigate(['/home']);
     }
   }
 
   onSubmit() {
-    if (this.username.trim()) {
+    if (!this.username || this.username.trim() === '') {
+      this.isInputInvalid = true;
+      return;
+    }
+    this.isInputInvalid = false;
+    try {
       this.userService.setUsername(this.username);
-      localStorage.setItem('username', this.username);
-      this.router.navigate(['/home']);
+      sessionStorage.setItem('username', this.username);
+      console.log('Username salvo:', sessionStorage.getItem('username'));
+      this.router.navigate(['/home'])
+      ;
+    } catch (error) {
+      console.error('Erro durante o login:', error);
     }
   }
 
   onLogin() {
-    // após validar o login
-    sessionStorage.setItem('nome', 'usuario'); // substitua 'usuario' pelo nome real
+    sessionStorage.setItem('username', this.userService.getUserName());
     this.router.navigate(['/home']);
   }
 } 

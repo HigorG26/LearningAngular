@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 
 export const AuthGuard = () => {
   const router = inject(Router);
-  const nome = sessionStorage.getItem('nome');
+  const nome = sessionStorage.getItem('username');
     
   if (!nome) {
     router.navigate(['/login']);

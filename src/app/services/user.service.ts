@@ -12,7 +12,7 @@ export class UserService {
 
   constructor() {
     // Recupera o username do localStorage quando o serviço é inicializado
-    this.username.next(localStorage.getItem('username') || '');
+    this.username.next(sessionStorage.getItem('username') || '');
   }
 
   getMessages() {

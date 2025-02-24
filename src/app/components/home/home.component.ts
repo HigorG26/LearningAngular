@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { UserService } from '../../services/user.service';
 import { techExamples } from '../../data/examples/tech-examples';
 import { scienceExamples } from '../../data/examples/science-examples';
@@ -16,25 +16,47 @@ interface Message {
 })
 export class HomeComponent implements OnInit {
 
-  username: string = '';
+  username: string = sessionStorage.getItem('username') || '';
   currentMessage: string = '';
   inputValue: string = '';
   messages: Message[] = [];
   placeholders: string[] = [];
+  currentPlaceholder: string = '';
 
-  constructor(private userService: UserService) {}
+  constructor(private userService: UserService, private changeDetector: ChangeDetectorRef) {}
 
   ngOnInit() {
+    const storedUsername = sessionStorage.getItem('username');
+    this.username = storedUsername || 'Visitante';
+    this.updatePlaceholders();
+    this.updateCurrentPlaceholder();
+    
     this.userService.currentUser.subscribe(name => {
-      this.username = name || 'Visitante';
-      this.updatePlaceholders();
+      if (name) {
+        this.username = name;
+        this.updatePlaceholders();
+        this.updateCurrentPlaceholder();
+      }
     });
+
+    setTimeout(() => {
+      this.changeDetector.detectChanges();
+    }, 0);
   }
 
   private updatePlaceholders(): void {
     this.placeholders = this.messages.length === 0 
       ? generatePlaceholders(this.username)
       : defaultPlaceholder;
+  }
+
+  private updateCurrentPlaceholder(): void {
+    const randomIndex = Math.floor(Math.random() * this.placeholders.length);
+    if (this.messages.length > 0) {
+      this.currentPlaceholder = defaultPlaceholder[0];
+    } else {
+      this.currentPlaceholder = this.placeholders[randomIndex];
+    }
   }
 
   sendMessage() {
@@ -69,8 +91,7 @@ export class HomeComponent implements OnInit {
       .slice(0, count);
   }
 
-  getRandomPlaceholder(): string {
-    const randomIndex = Math.floor(Math.random() * this.placeholders.length);
-    return this.placeholders[randomIndex];
+  ngAfterViewInit() {
+    this.changeDetector.detectChanges();
   }
 }
