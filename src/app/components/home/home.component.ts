@@ -22,6 +22,7 @@ export class HomeComponent implements OnInit {
   messages: Message[] = [];
   placeholders: string[] = [];
   currentPlaceholder: string = '';
+  isInputInvalid: boolean = false;
 
   constructor(private userService: UserService, private changeDetector: ChangeDetectorRef) {}
 
@@ -57,6 +58,21 @@ export class HomeComponent implements OnInit {
     } else {
       this.currentPlaceholder = this.placeholders[randomIndex];
     }
+  }
+
+  checkMessage(message: string): boolean {
+    if (!this.username || this.username.trim() === '') {
+      this.isInputInvalid = true;
+      return false;
+    }
+    
+    if (!message || message.trim() === '') {
+      this.isInputInvalid = true;
+      return false;
+    }
+    
+    this.isInputInvalid = false;
+    return true;
   }
 
   sendMessage() {
