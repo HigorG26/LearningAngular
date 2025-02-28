@@ -76,15 +76,18 @@ export class HomeComponent implements OnInit {
   }
 
   sendMessage() {
-    const messageToSend = this.inputValue || this.currentMessage;
-    if (messageToSend.trim() && messageToSend.length > 0) {
+    if (this.inputValue.trim()) {
       this.messages.push({
-        text: messageToSend,
+        text: this.inputValue,
         timestamp: new Date()
       });
       this.inputValue = '';
-      this.currentMessage = '';
-      this.updatePlaceholders();
+      
+      // Resetar altura do textarea
+      const textarea = document.getElementById('message-input') as HTMLTextAreaElement;
+      if (textarea) {
+        textarea.style.height = '48px'; // altura mínima definida em min-h-[48px]
+      }
     }
   }
 
@@ -109,5 +112,20 @@ export class HomeComponent implements OnInit {
 
   ngAfterViewInit() {
     this.changeDetector.detectChanges();
+  }
+
+  autoGrow(event: any): void {
+    const element = event.target;
+    element.style.height = 'auto';
+    element.style.height = element.scrollHeight + 'px';
+    
+    // Adiciona overflow-y-auto apenas quando necessário
+    if (element.scrollHeight > 128) { // 128px = max-h-32
+      element.classList.add('overflow-y-auto');
+      element.classList.remove('overflow-y-hidden');
+    } else {
+      element.classList.add('overflow-y-hidden');
+      element.classList.remove('overflow-y-auto');
+    }
   }
 }

@@ -3,8 +3,8 @@
     <div class="flex-auto flex flex-col items-center justify-center space-y-8 min-h-[300px] flex-shrink-0 animate-fadeIn">
       <div class="flex flex-col items-center justify-center space-y-2">
         <div class="flex items-center gap-2">
-          <img src="assets/Designer.jpeg" alt="Logo" class="w-16 h-16 my-auto mb-4 rounded-full animate-slideInRight">
-          <div class="h-8 w-0.5 bg-gray-600 mx-2"></div>
+          <img src="assets/Designer.jpeg" alt="Logo" class="w-16 h-16 my-auto mb-4 rounded-full animate-[slideInLeft_1s_ease-in-out] translate-x-0">
+          <div class="h-8 w-0.5 bg-gray-600 mx-2 animate-fade-in duration-4s"></div>
           <h1 class="text-4xl font-bold text-orange-400 animate-[slideInUp_1s_ease-in-out] translate-y-0 my-auto">CRAG.AI</h1>
         </div>
         <p class="text-lg text-gray-400 text-center">
@@ -16,7 +16,7 @@
           <div id="message-{{i}}" class="w-full flex flex-col items-end space-y-1" *ngFor="let message of messages; let i = index">
             <div class="flex flex-col items-end space-y-1">
               <span class="text-sm text-gray-400">{{ username }}</span>
-              <p class="bg-blue-500 text-white p-3 rounded-l-lg w-fit max-w-xs">
+              <p class="bg-blue-500 text-white p-3 rounded-l-lg w-fit max-w-xs break-words whitespace-pre-wrap">
                 {{ message.text }}
               </p>
             </div>
@@ -29,7 +29,15 @@
             </svg>
           </button>
           <div id="input-wrapper" class="flex flex-1" [class.border-orange-400]="!inputValue.trim()">
-            <input id="message-input" [placeholder]="currentPlaceholder" class="flex-1 bg-gray-800 border border-gray-700 rounded-l-lg py-3 pl-4 pr-4 text-gray-100 focus:outline-none focus:border-orange-400 transition-colors" type="text" [(ngModel)]="inputValue" (keyup.enter)="sendMessage()">
+            <textarea 
+              id="message-input" 
+              [placeholder]="currentPlaceholder" 
+              class="flex-1 bg-gray-800 border border-gray-700 rounded-l-lg py-3 pl-4 pr-4 text-gray-100 focus:outline-none focus:border-orange-400 transition-colors resize-none min-h-[48px] max-h-32 overflow-y-hidden"
+              [(ngModel)]="inputValue" 
+              (keyup.enter)="sendMessage()"
+              (input)="autoGrow($event)"
+              rows="1"
+            ></textarea>
             <button 
               id="send-message-btn"
               *ngIf="inputValue.trim()"
